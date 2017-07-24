@@ -12,7 +12,10 @@
 
 
 # First download the zip file containing all the datasets to your current working directory.
-# Then download the datasets contained inside the zip file:
+# This script assumes that the "UCI HAR Dataset" directory is in your working directory and
+# that all the files contained in it are in their original locations.
+
+# The datasets below are as follows:
 
 # - 'features' contains a list of all the measurment names
 # - 'activities' contains a list of the six different activities that subjects performed
@@ -22,18 +25,14 @@
 # - 'test', 'testSubjects', and 'testlabs' are analogous to 'train', 'trainSubjects', and 'trainlabs'
 
 
-zip <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
-z <- "./data.zip"
-download.file(zip, destfile = z)
-
-features <- read.table(unz(z, "UCI HAR Dataset/features.txt"))
-activities <- read.table(unz(z, "UCI HAR Dataset/activity_labels.txt"))
-train <- read.table(unz(z, "UCI HAR Dataset/train/X_train.txt"))
-trainSubjects <- read.table(unz(z, "UCI HAR Dataset/train/subject_train.txt"))
-trainlabs <- read.table(unz(z, "UCI HAR Dataset/train/y_train.txt"))
-test <- read.table(unz(z, "UCI HAR Dataset/test/X_test.txt"))
-testSubjects <- read.table(unz(z, "UCI HAR Dataset/test/subject_test.txt"))
-testlabs <- read.table(unz(z, "UCI HAR Dataset/test/y_test.txt"))
+features <- read.table(file = "./UCI HAR Dataset/features.txt")
+activities <- read.table(file = "./UCI HAR Dataset/activity_labels.txt")
+train <- read.table(file = "./UCI HAR Dataset/train/X_train.txt")
+trainSubjects <- read.table(file = "./UCI HAR Dataset/train/subject_train.txt")
+trainlabs <- read.table(file = "./UCI HAR Dataset/train/y_train.txt")
+test <- read.table("./UCI HAR Dataset/test/X_test.txt")
+testSubjects <- read.table("./UCI HAR Dataset/test/subject_test.txt")
+testlabs <- read.table("./UCI HAR Dataset/test/y_test.txt")
 
 
 
@@ -78,7 +77,7 @@ test <- testkey %>%
         cbind(test)
 
 completeData <- rbind(train, test)
-View(completeData)
+# View(completeData)
 
 
 
@@ -92,7 +91,7 @@ View(completeData)
 meansd <- names(completeData)[str_detect(names(completeData), "mean")|str_detect(names(completeData), "std")]
 
 meansdData <- completeData[,c("subject", "activity",meansd)]
-View(meansdData)
+# View(meansdData)
 
 
 
@@ -111,8 +110,7 @@ View(averages)
 
 # Write out a .txt file containing the 'averages' data.
 
-
-write.table(averages, file = "./averages.txt", row.name = FALSE)
+# write.table(averages, file = "./averages.txt", row.name = FALSE)
 
 
 
