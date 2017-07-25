@@ -53,7 +53,7 @@ Transform. Units of acceleration are standard gravity units "g" and angular velo
 
 In addition, the subject and activity corresponding to each of the measurements are included in the dataset.
 
-More information about the data can be found in the "official.md" and the "features.md" documents in the
+More information about the data can be found in the "official.txt" and the "features.txt" documents in the
 repository.
 
           
